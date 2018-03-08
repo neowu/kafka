@@ -1,8 +1,10 @@
 FROM        openjdk:jre-alpine
 MAINTAINER  neo
-ARG         KAFKA_VERSION=1.0.0
+ARG         KAFKA_VERSION=1.0.1
 ARG         SCALA_VERSION=2.12
-ENV         KAFKA_ARGS=
+ENV         KAFKA_ARG=""
+# disable jmx, jre-alpine will fail to start JVM on docker for mac with JMX java opts, linux works ok
+ENV         KAFKA_JMX_OPTS=" "
 RUN         apk add --no-cache curl bash \
                 && mkdir -p /opt \
                 && curl -SL http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar xzf - -C /opt \
