@@ -1,6 +1,6 @@
 FROM        openjdk:jre-alpine
 MAINTAINER  neo
-ARG         KAFKA_VERSION=1.0.1
+ARG         KAFKA_VERSION=1.1.0
 ARG         SCALA_VERSION=2.12
 ENV         KAFKA_ARG=""
 # disable jmx, jre-alpine will fail to start JVM on docker for mac with JMX java opts, linux works ok
