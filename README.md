@@ -10,7 +10,7 @@ services:
     ports:
       - 2181:2181
   kafka:
-    image: neowu/kafka:1.0.1
+    image: neowu/kafka:1.1.1
     ports:
       - 9092:9092
     environment:
@@ -93,7 +93,7 @@ spec:
           value: "-Xms1G -Xmx1G"
         - name: KAFKA_ARGS
           value: "--override zookeeper.connect=zookeeper-0.zookeeper:2181 --override log.retention.bytes=45000000000 --override log.retention.hours=168"
-        image: neowu/kafka:1.0.1
+        image: neowu/kafka:1.1.1
         ports:
         - containerPort: 9092
         volumeMounts:

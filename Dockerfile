@@ -1,6 +1,6 @@
 FROM        openjdk:8-jre-slim
 MAINTAINER  neo
-ARG         KAFKA_VERSION=1.1.0
+ARG         KAFKA_VERSION=1.1.1
 ARG         SCALA_VERSION=2.12
 ENV         KAFKA_ARG=""
 # disable jmx
