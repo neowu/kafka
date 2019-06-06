@@ -93,7 +93,7 @@ spec:
           value: "-Xms1G -Xmx1G"
         - name: KAFKA_ARGS
           value: "--override zookeeper.connect=zookeeper-0.zookeeper:2181 --override log.retention.bytes=45000000000 --override log.retention.hours=168"
-        image: neowu/kafka:2.2.0
+        image: neowu/kafka:2.2.1
         ports:
         - containerPort: 9092
         volumeMounts:
