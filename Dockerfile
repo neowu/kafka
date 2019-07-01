@@ -1,5 +1,5 @@
 FROM        openjdk:11-jre-slim
-ARG         KAFKA_VERSION=2.2.1
+ARG         KAFKA_VERSION=2.3.0
 ARG         SCALA_VERSION=2.12
 ENV         KAFKA_ARG=""
 # disable jmx
