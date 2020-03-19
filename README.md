@@ -6,7 +6,7 @@ kafka image for our own project, it does not support auto discovery or clusterin
 version: "3"
 services:
   zookeeper:
-    image: zookeeper
+    image: zookeeper:3.5.7
     ports:
     - 2181
     environment:
@@ -49,7 +49,7 @@ spec:
         agentpool: app
       containers:
         - name: zookeeper
-          image: zookeeper
+          image: zookeeper:3.5.7
           env:
             - name: JMXDISABLE
               value: "true"
