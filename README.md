@@ -15,7 +15,7 @@ services:
     - ZOO_DATA_LOG_DIR=/datalog
     - ZOO_ADMINSERVER_ENABLED=false
   kafka:
-    image: neowu/kafka:2.4.0
+    image: neowu/kafka:2.4.1
     ports:
     - 9092:9092
     environment:
@@ -127,7 +127,7 @@ spec:
               value: "-Xms1G -Xmx1G"
             - name: KAFKA_ARGS
               value: "--override zookeeper.connect=zookeeper-0.zookeeper:2181 --override log.retention.bytes=45000000000 --override log.retention.hours=168"
-          image: neowu/kafka:2.4.0
+          image: neowu/kafka:2.4.1
           volumeMounts:
             - name: data
               mountPath: /data
