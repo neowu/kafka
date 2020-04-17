@@ -4,6 +4,8 @@ ARG         SCALA_VERSION=2.13
 ENV         KAFKA_ARG=""
 # disable jmx
 ENV         KAFKA_JMX_OPTS=" "
+# disable gc log
+ENV         KAFKA_GC_LOG_OPTS=" "
 # bash is required by kafka start script
 RUN         apk add --no-cache curl bash
 RUN         curl -SL http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar xzf - -C /opt \
