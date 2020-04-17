@@ -13,5 +13,5 @@ RUN         curl -SL http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_
 ADD         conf/server.properties /opt/kafka/config/
 EXPOSE      9092
 VOLUME      /data
-# to referring kafka_args env, it must call bash and pass env as param
+# to refer kafka_args env, it must call bash and pass env as param
 ENTRYPOINT  ["/bin/bash", "-c", "/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties ${KAFKA_ARGS}"]
