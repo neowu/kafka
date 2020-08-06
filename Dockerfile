@@ -1,5 +1,5 @@
 FROM        adoptopenjdk/openjdk11:alpine-jre
-ARG         KAFKA_VERSION=2.5.0
+ARG         KAFKA_VERSION=2.6.0
 ARG         SCALA_VERSION=2.13
 ENV         KAFKA_ARG=""
 # disable jmx

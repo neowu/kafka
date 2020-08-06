@@ -1,12 +1,12 @@
 ## Overview
-kafka image for our own project, it does not support auto discovery or clustering yet.
+kafka image for our own projects, pls check default values in server.properties, and override by needs, e.g. clustering, partition, retention and etc
 
 ## docker-compose example
 ```
 version: "3"
 services:
   zookeeper:
-    image: zookeeper:3.5.7
+    image: zookeeper:3.5.8
     ports:
     - 2181
     environment:
@@ -15,11 +15,11 @@ services:
     - ZOO_DATA_LOG_DIR=/datalog
     - ZOO_ADMINSERVER_ENABLED=false
   kafka:
-    image: neowu/kafka:2.5.0
+    image: neowu/kafka:2.6.0
     ports:
     - 9092:9092
     environment:
-    - KAFKA_ARGS=--override advertised.listeners=PLAINTEXT://localhost:9092
+    - KAFKA_ARGS=--override advertised.listeners=PLAINTEXT://localhost:9092 --override num.partitions=3
     depends_on:
     - zookeeper
 ```
@@ -38,8 +38,7 @@ spec:
     matchLabels:
       app: zookeeper
   updateStrategy:
-    type: RollingUpdate
-  podManagementPolicy: Parallel
+    type: OnDelete
   template:
     metadata:
       labels:
@@ -49,7 +48,7 @@ spec:
         agentpool: app
       containers:
         - name: zookeeper
-          image: zookeeper:3.5.7
+          image: zookeeper:3.5.8
           env:
             - name: JMXDISABLE
               value: "true"
@@ -111,8 +110,7 @@ spec:
     matchLabels:
       app: kafka
   updateStrategy:
-    type: RollingUpdate
-  podManagementPolicy: Parallel
+    type: OnDelete
   template:
     metadata:
       labels:
@@ -127,7 +125,7 @@ spec:
               value: "-Xms1G -Xmx1G"
             - name: KAFKA_ARGS
               value: "--override zookeeper.connect=zookeeper-0.zookeeper:2181 --override log.retention.bytes=45000000000 --override log.retention.hours=168"
-          image: neowu/kafka:2.5.0
+          image: neowu/kafka:2.6.0
           volumeMounts:
             - name: data
               mountPath: /data
