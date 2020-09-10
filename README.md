@@ -52,6 +52,8 @@ spec:
           env:
             - name: JMXDISABLE
               value: "true"
+            - name: SERVER_JVMFLAGS
+              value: "-Dzookeeper.jmx.log4j.disable=true"            
             - name: ZOO_DATA_DIR
               value: "/data"
             - name: ZOO_DATA_LOG_DIR
@@ -121,10 +123,13 @@ spec:
       containers:
         - name: kafka
           env:
+            # add KAFKA_JMX_OPTS for monitoring if needed
+            - name: KAFKA_JMX_OPTS
+              value: "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.rmi.port=1099"
             - name: KAFKA_HEAP_OPTS
               value: "-Xms1G -Xmx1G"
             - name: KAFKA_ARGS
-              value: "--override zookeeper.connect=zookeeper-0.zookeeper:2181 --override log.retention.bytes=45000000000 --override log.retention.hours=168"
+              value: "--override zookeeper.connect=zookeeper-0.zookeeper:2181 --override log.retention.bytes=1000000000 --override log.retention.hours=168 --override num.partitions=16"
           image: neowu/kafka:2.6.0
           volumeMounts:
             - name: data
