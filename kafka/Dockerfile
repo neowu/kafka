@@ -1,5 +1,5 @@
 FROM        adoptopenjdk/openjdk11:alpine-jre
-ARG         KAFKA_VERSION=2.8.0
+ARG         KAFKA_VERSION=3.0.0
 ARG         SCALA_VERSION=2.13
 ENV         KAFKA_ARG=""
 # disable jmx
@@ -8,7 +8,7 @@ ENV         KAFKA_JMX_OPTS=" "
 ENV         KAFKA_GC_LOG_OPTS=" "
 # bash is required by kafka start script
 RUN         apk add --no-cache curl bash
-RUN         curl -SL http://www.us.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar xzf - -C /opt \
+RUN         curl -SL https://dlcdn.apache.org/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar xzf - -C /opt \
                 && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka
 ADD         conf/server.properties /opt/kafka/config/
 EXPOSE      9092
