@@ -7,7 +7,8 @@ ENV         KAFKA_JMX_OPTS=" "
 # disable gc log
 ENV         KAFKA_GC_LOG_OPTS=" "
 # bash is required by kafka start script
-RUN         apk add --no-cache curl bash
+# gcompat is for /lib/ld-linux-x86-64.so.2 required by kafka/snappy
+RUN         apk add --no-cache curl bash gcompat
 RUN         curl -SL https://dlcdn.apache.org/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar xzf - -C /opt \
                 && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka
 ADD         conf/server.properties /opt/kafka/config/

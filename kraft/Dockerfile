@@ -9,7 +9,8 @@ ENV         KAFKA_GC_LOG_OPTS=" "
 ENV         KAFKA_NODE_ID=""
 ENV         KAFKA_CLUSTER_ID=""
 # bash is required by kafka start script
-RUN         apk add --no-cache curl bash
+# gcompat is for /lib/ld-linux-x86-64.so.2 required by kafka/snappy
+RUN         apk add --no-cache curl bash gcompat
 RUN         curl -SL https://dlcdn.apache.org/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz | tar xzf - -C /opt \
                 && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka
 EXPOSE      1099
