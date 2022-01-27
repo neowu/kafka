@@ -1,5 +1,5 @@
-FROM        adoptopenjdk/openjdk11:alpine-jre
-ARG         KAFKA_VERSION=3.0.0
+FROM        eclipse-temurin:17-jre-alpine
+ARG         KAFKA_VERSION=3.1.0
 ARG         SCALA_VERSION=2.13
 ENV         KAFKA_ARG=""
 # disable jmx
