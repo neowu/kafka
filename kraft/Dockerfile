@@ -1,5 +1,5 @@
 FROM        eclipse-temurin:17-jre-alpine
-ARG         KAFKA_VERSION=3.1.0
+ARG         KAFKA_VERSION=3.2.0
 ARG         SCALA_VERSION=2.13
 ENV         KAFKA_ARG=""
 # disable jmx

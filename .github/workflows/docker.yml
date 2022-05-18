@@ -17,3 +17,8 @@ jobs:
                 context: "kafka"
                 tags: "neowu/kafka:${{ env.TAG }}"
                 push: true
+        -   uses: docker/build-push-action@v2
+            with:
+                context: "kraft"
+                tags: "neowu/kafka:${{ env.TAG }}-kraft"
+                push: true
