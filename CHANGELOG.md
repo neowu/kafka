@@ -1,5 +1,7 @@
 ## Change log
 
+### 3.5.0 (06/25/2023)
+
 ### 3.4.0 (02/13/2023)
 
 * only publish in kraft mode

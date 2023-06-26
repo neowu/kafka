@@ -1,19 +1,19 @@
 name: docker
 on:
-    push:
-        tags: [ "*.*.*" ]
+  push:
+    tags: [ "*.*.*" ]
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-        -   uses: actions/checkout@v2
-        -   run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-        -   uses: docker/login-action@v1
-            with:
-                username: neowu
-                password: ${{ secrets.DOCKER_HUB_TOKEN }}
-        -   uses: docker/build-push-action@v2
-            with:
-                context: "kafka"
-                tags: "neowu/kafka:${{ env.TAG }}"
-                push: true
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - uses: docker/login-action@v2
+      with:
+        username: neowu
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+    - uses: docker/build-push-action@v4
+      with:
+        context: "kafka"
+        tags: "neowu/kafka:${{ env.TAG }}"
+        push: true
