@@ -1,5 +1,9 @@
 ## Change log
 
+### 3.6.0 (10/13/2023)
+
+* added arm64 build for apple silicon cpu
+
 ### 3.5.1 (08/21/2023)
 
 ### 3.5.0 (06/25/2023)
